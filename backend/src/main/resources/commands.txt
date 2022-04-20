@@ -1,8 +1,0 @@
-to run the command without profile
-./mvnw compile jib:dockerBuild -Djib.to.image=fullstack:v1 or ./mvnw compile jib:dockerBuild -Dimage=fullstack:v1
-./mvnw clean install jib:dockerBuild -Djib.to.image=fullstack:v1 or ./mvnw clean install jib:dockerBuild -Dimage=fullstack:v1
-
-
-with profiles configured
-./mvnw clean install -P build-frontend -P jib-push-to-dockerhub -Dapp.image.tag=2
-./mvnw clean install -P build-frontend -P jib-push-to-local -Dapp.image.tag=latest

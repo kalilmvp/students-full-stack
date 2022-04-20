@@ -25,6 +25,15 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <scope>runtime</scope>
+        </dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
@@ -85,6 +94,7 @@
                             </execution>
                             <execution>
                                 <id>npm install</id>
+                                <phase>package</phase>
                                 <goals>
                                     <goal>npm</goal>
                                 </goals>
@@ -94,6 +104,7 @@
                             </execution>
                             <execution>
                                 <id>npm run build</id>
+                                <phase>package</phase>
                                 <goals>
                                     <goal>npm</goal>
                                 </goals>
