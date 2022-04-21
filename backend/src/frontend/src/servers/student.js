@@ -14,3 +14,7 @@ export const getAllStudents = () => {
     return api.get("students")
         .then(buildResponse);
 }
+
+export const addNewStudent = student => {
+    return api.post("students", student);
+}

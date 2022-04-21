@@ -46,3 +46,18 @@
 .site-layout .site-layout-background {
     background: #fff;
 }
+
+.tag-total-students {
+    display: flex;
+    align-items: center;
+    margin-bottom: 14px;
+
+    font-size: 14px;
+}
+
+.site-badge-count-4 .ant-badge-count {
+    margin-left: 10px;
+    color: #373832;
+    background-color: #fff;
+    box-shadow: 0 0 0 1px #d9d9d9 inset;
+}
