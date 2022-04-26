@@ -3,6 +3,9 @@ package com.kmvpsolutions.backend.student.model;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 /**
  * @author kalil.peixoto
@@ -25,9 +28,15 @@ public class Student {
             generator = "student_id_seq",
             strategy = GenerationType.SEQUENCE)
     private Long id;
+    @NotBlank
+    @Column(nullable = false)
     private String name;
+    @Email
+    @Column(nullable = false, unique = true)
     private String email;
     @Enumerated(EnumType.STRING)
+    @NotNull
+    @Column(nullable = false)
     private Gender gender;
 
     public Student(Long id, String name, Gender gender) {

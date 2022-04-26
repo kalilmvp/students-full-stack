@@ -13,7 +13,16 @@ const buildResponse = response => {
     error.response = errorResponse;
 
     if (error400Status.includes(error.response.status)) {
-        warningNotification(error.response.data.message, null, 'bottomLeft');
+        // this is to check validation field errors
+        const errorsValidation = error.response.data.errors;
+        if (errorsValidation) {
+            const errorValidation = errorsValidation[0];
+            warningNotification(`${errorValidation.field} ${errorValidation.defaultMessage}`, null, 'bottomLeft');
+        } else {
+            // default business message errors
+            warningNotification(error.response.data.message, null, 'bottomLeft');
+        }
+
     } else {
         console.error(error);
         errorNotification('Internal Error', null, 'bottomLeft');
