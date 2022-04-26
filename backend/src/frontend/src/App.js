@@ -1,16 +1,18 @@
 import { useEffect, useState } from 'react';
 import './App.css';
-import { getAllStudents } from "./servers/student";
-import { Layout, Menu, Breadcrumb, Table, Spin, Empty, Button, Badge, Tag, Avatar } from 'antd';
+import { deleteStudent, getAllStudents } from "./servers/student";
+import { Avatar, Badge, Breadcrumb, Button, Empty, Layout, Menu, Popconfirm, Radio, Spin, Table, Tag } from 'antd';
 import {
     DesktopOutlined,
-    PieChartOutlined,
     FileOutlined,
+    LoadingOutlined,
+    PieChartOutlined,
+    PlusOutlined,
     TeamOutlined,
     UserOutlined,
-    LoadingOutlined, PlusOutlined,
 } from '@ant-design/icons';
 import StudentDrawerForm from "./components/StudentDrawerForm";
+import { errorNotification, sucessNotification } from "./components/Notification";
 
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -31,13 +33,21 @@ const MyAvatar = ({ name }) => {
     return <Avatar>{`${name.charAt(0)}${lastName.charAt(0)}`}</Avatar>;
 }
 
-const columns = [
+const removeStudent = (id, callBack) => {
+    deleteStudent(id)
+        .then(resp => {
+            sucessNotification('Student deleted!')
+            callBack();
+        });
+}
+
+const columns = fetchStudents => [
     {
         title: '',
         dataIndex: 'avatar',
         key: 'avatar',
         render: (text, student) => <MyAvatar name={student.name}/>
-    },,
+    },
     {
         title: 'Name',
         dataIndex: 'name',
@@ -52,6 +62,24 @@ const columns = [
         title: 'Email',
         dataIndex: 'email',
         key: 'email',
+    },
+    {
+        title: 'Actions',
+        dataIndex: 'actions',
+        key: 'actions',
+        render: (text, student) => (
+            <Radio.Group>
+                <Popconfirm
+                    title={`Are you sure you wanna remove the student ${student.name} ?`}
+                    onConfirm={() => removeStudent(student.id, fetchStudents)}
+                    okText="Yes"
+                    cancelText="No"
+                >
+                    <Radio.Button value="large">Delete</Radio.Button>
+                </Popconfirm>
+                <Radio.Button style={{ marginLeft: '10px' }}  onClick={() => alert('not yet implemented!')} value="default">Edit</Radio.Button>
+            </Radio.Group>
+        )
     },
 ];
 
@@ -68,10 +96,16 @@ function App() {
     }, []);
 
     const fetchStudents = () => {
-        getAllStudents().then(resp => {
-            setStudents(resp.data);
-            setFetching(false);
-        });
+        getAllStudents()
+            .then(resp => {
+                setStudents(resp.data);
+            })
+            .catch(err => {
+                errorNotification('Error fetching students', err.response.data.message);
+            })
+            .finally(_ => {
+                setFetching(false);
+            });
     }
 
     const renderStudents = () => {
@@ -93,7 +127,7 @@ function App() {
             <Table
                     rowKey={(student) => student.id}
                     dataSource={students}
-                    columns={columns}
+                    columns={columns(fetchStudents)}
                     bordered
                     title={() => (
                         <>

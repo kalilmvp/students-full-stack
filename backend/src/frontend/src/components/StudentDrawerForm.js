@@ -2,7 +2,7 @@ import { Drawer, Input, Col, Select, Form, Row, Button, Spin } from 'antd';
 import { addNewStudent } from "../servers/student";
 import { LoadingOutlined } from "@ant-design/icons";
 import { useState } from "react";
-import { errorNotification, sucessNotification } from "./Notification";
+import { sucessNotification } from "./Notification";
 
 const {Option} = Select;
 
@@ -27,9 +27,6 @@ function StudentDrawerForm({showDrawer, setShowDrawer, fetchStudents}) {
             })
 
             fetchStudents();
-        }).catch(err => {
-            console.error(err);
-            errorNotification('Error adding the student');
         }).finally(_ => {
             setSubmitting(false);
         });

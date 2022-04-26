@@ -28,4 +28,9 @@ public class StudentController {
     public void addStudent(@RequestBody Student student) {
         this.studentService.addStudent(student);
     }
+
+    @DeleteMapping(value = "/{id}")
+    public void removeStudent(@PathVariable("id") Long id) {
+        this.studentService.removeStudent(id);
+    }
 }
