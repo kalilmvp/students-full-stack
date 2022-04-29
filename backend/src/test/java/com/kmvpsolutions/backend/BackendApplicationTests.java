@@ -9,7 +9,7 @@ class BackendApplicationTests {
 
     @Test
     void contextLoads() {
-        Assertions.fail("Some random message test error");
+//        Assertions.fail("Some random message test error");
     }
 
 }
