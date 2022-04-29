@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.kmvpsolutions</groupId>
-	<artifactId>backend</artifactId>
+	<artifactId>students-full-stack-amigoscode</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>backend</name>
-	<description>Backend for students management</description>
+	<name>students-full-stack-amigoscode</name>
+	<description>Students management</description>
 
 	<properties>
 		<java.version>17</java.version>
