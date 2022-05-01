@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   backend:
-    image: "kalilmvp/springboot-react-fullstack:1.5.2022.18.32.38"
+    image: "kalilmvp/springboot-react-fullstack:1.5.2022.19.24.12"
     ports:
       - "80:8080"
     restart: "always"
