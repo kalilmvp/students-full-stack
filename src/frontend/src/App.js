@@ -7,7 +7,7 @@ import {
     Breadcrumb,
     Button,
     Divider,
-    Empty,
+    Empty, Image,
     Layout,
     Menu,
     Popconfirm,
