@@ -1,7 +1,21 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import { deleteStudent, getAllStudents } from "./servers/student";
-import { Avatar, Badge, Breadcrumb, Button, Empty, Layout, Menu, Popconfirm, Radio, Spin, Table, Tag } from 'antd';
+import {
+    Avatar,
+    Badge,
+    Breadcrumb,
+    Button,
+    Divider,
+    Empty,
+    Layout,
+    Menu,
+    Popconfirm,
+    Radio,
+    Spin,
+    Table,
+    Tag
+} from 'antd';
 import {
     DesktopOutlined,
     FileOutlined,
@@ -35,7 +49,7 @@ const MyAvatar = ({ name }) => {
 
 const removeStudent = (id, callBack) => {
     deleteStudent(id)
-        .then(resp => {
+        .then(_ => {
             sucessNotification('Student deleted!')
             callBack();
         });
@@ -199,7 +213,20 @@ function App() {
                     {renderStudents()}
                 </div>
             </Content>
-            <Footer style={{ textAlign: 'center' }}>Amigoscode Project</Footer>
+            <Footer style={{ textAlign: 'center' }}>
+                <Image
+                    width={75}
+                    src="https://user-images.githubusercontent.com/40702606/110871298-0ab98d00-82c6-11eb-88e8-20c4d5c9ded5.png"
+                />
+                <Divider>
+                    <a
+                        rel="noopener noreferrer"
+                        target="_blank"
+                        href="https://amigoscode.com/p/full-stack-spring-boot-react">
+                        Click here to access Fullstack Spring Boot & React for professionals
+                    </a>
+                </Divider>
+            </Footer>
         </Layout>
     </Layout>;
 }
