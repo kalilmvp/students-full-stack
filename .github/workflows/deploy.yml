@@ -13,7 +13,7 @@ env:
   POSTGRESQL_USER: postgres
   POSTGRESQL_PASSWORD: password
   # Java
-  JAVA_VERSION: 1.15
+  JAVA_VERSION: 1.17
   # DockerHub
   DOCKERHUB_USERNAME: kalilmvp
   # AWS & Elastic Bean Stalk
@@ -67,8 +67,6 @@ jobs:
             -P build-frontend \
             -P jib-push-to-dockerhub \
               -Dapp.image.tag=${{steps.build-number.outputs.BUILD_NUMBER}}
-        with:
-          java-version: ${{ env.JAVA_VERSION }}
       - uses: 8398a7/action-slack@v3
         with:
           status: ${{ job.status }}
