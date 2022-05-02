@@ -134,25 +134,25 @@
                                             <directory>src/frontend/build</directory>
                                         </resource>
                                     </resources>
-                                    <outputDirectory>${basedir}/target/classes/static</outputDirectory>
+                                    <outputDirectory>${project.basedir}/target/classes/static</outputDirectory>
                                     <overwrite>true</overwrite>
                                 </configuration>
                             </execution>
-                            <execution>
-                                <id>copy-build-folder-resources</id>
-                                <phase>process-classes</phase>
-                                <goals>
-                                    <goal>copy-resources</goal>
-                                </goals>
-                                <configuration>
-                                    <resources>
-                                        <resource>
-                                            <directory>src/frontend/build</directory>
-                                        </resource>
-                                    </resources>
-                                    <outputDirectory>${project.basedir}/src/main/resources/static</outputDirectory>
-                                </configuration>
-                            </execution>
+<!--                            <execution>-->
+<!--                                <id>copy-build-folder-resources</id>-->
+<!--                                <phase>process-classes</phase>-->
+<!--                                <goals>-->
+<!--                                    <goal>copy-resources</goal>-->
+<!--                                </goals>-->
+<!--                                <configuration>-->
+<!--                                    <resources>-->
+<!--                                        <resource>-->
+<!--                                            <directory>src/frontend/build</directory>-->
+<!--                                        </resource>-->
+<!--                                    </resources>-->
+<!--                                    <outputDirectory>${project.basedir}/src/main/resources/static</outputDirectory>-->
+<!--                                </configuration>-->
+<!--                            </execution>-->
                         </executions>
                     </plugin>
                 </plugins>
@@ -220,7 +220,7 @@
                     <plugin>
                         <groupId>com.google.cloud.tools</groupId>
                         <artifactId>jib-maven-plugin</artifactId>
-                        <version>3.1.4</version>
+                        <version>3.2.1</version>
                         <configuration>
                             <from>
                                 <image>openjdk:17</image>
@@ -230,7 +230,16 @@
                                     <port>8080</port>
                                 </ports>
                                 <format>OCI</format>
+                                <creationTime>USE_CURRENT_TIMESTAMP</creationTime>
                             </container>
+<!--                            <extraDirectories>-->
+<!--                                <paths>-->
+<!--                                    <path>-->
+<!--                                        <from>src/frontend/build</from>-->
+<!--                                        <into>${project.basedir}/target/classes/outro111</into>-->
+<!--                                    </path>-->
+<!--                                </paths>-->
+<!--                            </extraDirectories>-->
                         </configuration>
                         <executions>
                             <execution>
