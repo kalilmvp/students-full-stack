@@ -44,4 +44,10 @@ public class Student {
         this.name = name;
         this.gender = gender;
     }
+
+    public Student(String name, String email, Gender gender) {
+        this.name = name;
+        this.email = email;
+        this.gender = gender;
+    }
 }
